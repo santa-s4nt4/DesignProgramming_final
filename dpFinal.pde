@@ -10,8 +10,16 @@ boolean toggleValue4;
 
 PShader sd;
 
-void setup() {
+// main display
+void settings() {
   size(512, 512, P2D);
+}
+
+void setup() {
+  String[] args = {"SecondApplet"};   
+  SecondApplet sa = new SecondApplet();
+  PApplet.runSketch(args, sa);
+
   Toggle1 = new ControlP5(this);
   rectMode(CENTER);
   Toggle1.addToggle("toggleValue1")
@@ -46,7 +54,20 @@ void setup() {
 }
 
 void draw() {
-  if (toggleValue1 == true) {
+}
+
+// sub display
+public class SecondApplet extends PApplet {
+  void settings() {
+    size(700, 700, P2D);
+  }
+
+  void setup() {
+
+  }
+
+  void draw() {
+    if (toggleValue1 == true) {
     sd = loadShader("one.glsl");
     sd.set("time", millis() / 1000.0);
     sd.set("resolution", 512.0, 100.0);  
@@ -77,4 +98,5 @@ void draw() {
     shader(sd);
     rect(0, 0, 1024, 576);
     }
+  }
 }
