@@ -17,7 +17,7 @@ void setup() {
   Toggle1.addToggle("toggleValue1")
     .setSize(50, 50)
     .setPosition(40, 384)
-    .setValue(true)
+    .setValue(false)
     .setMode(ControlP5.SWITCH);
 
   Toggle2 = new ControlP5(this);
@@ -46,13 +46,10 @@ void setup() {
 }
 
 void draw() {
-  rect(256, 0, width, height);
-  fill(255);
-
   if (toggleValue1 == true) {
     sd = loadShader("one.glsl");
     sd.set("time", millis() / 1000.0);
-    sd.set("resolution", (float)width, (float)height);  
+    sd.set("resolution", 512.0, 100.0);  
     shader(sd);
     rect(0, 0, 1024, 576);
     }
