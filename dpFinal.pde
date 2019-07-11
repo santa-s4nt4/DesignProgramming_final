@@ -8,8 +8,6 @@ boolean toggleValue2;
 boolean toggleValue3;
 boolean toggleValue4;
 
-PShader sd;
-
 // main display
 void settings() {
   size(512, 512, P2D);
@@ -62,41 +60,43 @@ public class SecondApplet extends PApplet {
     size(700, 700, P2D);
   }
 
+  PShader sd;
+  
   void setup() {
 
   }
 
   void draw() {
     if (toggleValue1 == true) {
-    sd = loadShader("one.glsl");
-    sd.set("time", millis() / 1000.0);
-    sd.set("resolution", 512.0, 100.0);  
-    shader(sd);
-    rect(0, 0, 1024, 576);
+      sd = loadShader("one.glsl");
+      sd.set("time", millis() / 1000.0);
+      sd.set("resolution", 512.0, 100.0);  
+      shader(sd);
+      rect(0, 0, 1024, 576);
     }
     
-  if (toggleValue2 == true) {
-    sd = loadShader("two.glsl");
-    sd.set("time", millis() / 1000.0);
-    sd.set("resolution", (float)width, (float)height);  
-    shader(sd);
-    rect(0, 0, 1024, 576);
+    if (toggleValue2 == true) {
+      sd = loadShader("two.glsl");
+      sd.set("time", millis() / 1000.0);
+      sd.set("resolution", (float)width, (float)height);  
+      shader(sd);
+      rect(0, 0, 1024, 576);
     }
-
-  if (toggleValue3 == true) {
-    sd = loadShader("three.glsl");
-    sd.set("time", millis() / 1000.0);
-    sd.set("resolution", (float)width, (float)height);  
-    shader(sd);
-    rect(0, 0, 1024, 576);
+    
+    if (toggleValue3 == true) {
+      sd = loadShader("three.glsl");
+      sd.set("time", millis() / 1000.0);
+      sd.set("resolution", (float)width, (float)height);  
+      shader(sd);
+      rect(0, 0, 1024, 576);
     }
 
     if (toggleValue4 == true) {
-    sd = loadShader("four.glsl");
-    sd.set("time", millis() / 1000.0);
-    sd.set("resolution", (float)width, (float)height);  
-    shader(sd);
-    rect(0, 0, 1024, 576);
+      sd = loadShader("four.glsl");
+      sd.set("time", millis() / 1000.0);
+      sd.set("resolution", (float)width, (float)height);  
+      shader(sd);
+      rect(0, 0, 1024, 576);
     }
   }
 }
