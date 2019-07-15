@@ -27,15 +27,6 @@ void main()
     newp.y += 0.6/float(i)*cos(float(i)*p.x+time/(300.0/speed)+0.3*float(i+10))-2.0;
     p = newp;
   }
-
-  if(int(gl_FragCoord.y) <= 720)
-  {
-    vec3 color = vec3(0.4 * tan(0.6+p.y)+.5, 1.0*tan(1.2/p.y), 1.6+sin(p.x+p.y));
-    gl_FragColor = vec4(color, 1.0);
-  }
-  else
-  {
-    vec3 color = vec3(0);
-    gl_FragColor = vec4(color, 1.0);
-  }
+  vec3 color = vec3(.4 * tan(.6+p.y)+.5, 0.1*sin(3.2+p.y), .5+cos(p.x-p.y));
+  gl_FragColor = vec4(color, 1.0);
 }

@@ -30,7 +30,7 @@ void main()
 
   if(int(gl_FragCoord.y) <= 720)
   {
-    vec3 color = vec3(0.4 * tan(0.6+p.y)+.5, 1.0*tan(1.2/p.y), 1.6+sin(p.x+p.y));
+    vec3 color = vec3(.4 * tan(.6+p.y)+.5, 0.1*sin(3.2+p.y), .5+cos(p.x-p.y));
     gl_FragColor = vec4(color, 1.0);
   }
   else

@@ -1,37 +1,32 @@
-uniform float time;
-uniform vec2 mouse;
 uniform vec2 resolution;
+uniform float time;
 
-float dm(vec2 p){
-  p = fract(p) - 0.5;
 
-  return length(p);
+
+const float Pi = 3.14159;
+
+float sinApprox(float x)
+{
+  x = Pi * floor(x / Pi);
+  return (4.0 / Pi) * x - (4.0 / Pi) * x * abs(x);
 }
 
-float cell(vec2 p){
-  float ang = 0.33333 * 2.0 * 3.1415926;
-  mat2 m = mat2(cos(ang), sin(ang),
-                -sin(ang), cos(ang));
-
-  float offs = 1.5;
-  vec2 a = sin(vec2(1.93, 0.0) + time * 0.5) * 0.766;
-  float d0 = dm(p + vec2(a.x * 1.5, 0.0));
-  float d1 = dm(p + vec2(0.0, offs + a.y));
-
-  p = m * (p * 1.5 + 0.5);
-  float d2 = dm(p + vec2(a.x * 1.5, 0.0));
-  float d3 = dm(p + vec2(0.0, offs + a.y));
-
-  return min(min(d0, d1), min(d2, d3));
+float cosApprox(float x)
+{
+  return sinApprox(x * Pi);
 }
 
-void main(){
-  vec2 p = gl_FragCoord.xy / max(resolution.x, resolution.y);
-
-  float c = cell(2.0 * p) * 1.4;
-  c *= c;
-  c += 0.07;
-
-  vec3  col = 0.5 + 0.5 * cos(c * 5.2831 + vec3(0.0, -3.0, 10.0));
-  gl_FragColor = vec4(col, 1.0);
+void main()
+{
+  vec2 p = (2.0*gl_FragCoord.xy-resolution)/max(resolution.x,resolution.y);
+  for(int i = 1; i < 50; i++)
+  {
+    vec2 newp = p;
+    float speed = 100.0;
+    newp.x += 0.6/float(i)*sin(float(i)*p.y+time/(300.0/speed)+0.3*float(i));
+    newp.y += 0.6/float(i)*cos(float(i)*p.x+time/(300.0/speed)+0.3*float(i+10))-2.0;
+    p = newp;
+  }
+  vec3 color = vec3(0.4 * tan(0.6+p.y)+.5, 1.0*tan(1.2/p.y), 1.6+sin(p.x+p.y));
+  gl_FragColor = vec4(color, 1.0);
 }
