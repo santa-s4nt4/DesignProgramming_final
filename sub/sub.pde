@@ -15,10 +15,10 @@ void setup() {
     .setValue(0)
     .setPosition(50, 50)
     .setSize(200, 20)
-    .setColorActive(color(255, 0, 0))//スライダの色
-    .setColorBackground(color(255, 0, 0, 120)) //スライダの背景色 
-    .setColorCaptionLabel(color(0)) //キャプションラベルの色
-    .setColorForeground(color(255, 0, 0)) //スライダの色(マウスを離したとき)
+    .setColorActive(color(255, 0, 0))
+    .setColorBackground(color(255, 0, 0, 120)) 
+    .setColorCaptionLabel(color(0))
+    .setColorForeground(color(255, 0, 0))
     .setNumberOfTickMarks(5);
   slider.getController("sliderValue")
     .getValueLabel()
